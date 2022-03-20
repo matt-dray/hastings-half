@@ -1,0 +1,52 @@
+---
+title: "Hastings Half Marathon"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(gpx3d)
+file <- "data/route_2022-03-20_12.16pm.gpx"
+route <- gpx3d::extract_gpx3d(file)
+```
+
+```{r eval=FALSE}
+route_plot <- gpx3d::plot_gpx3d(route, route_only = TRUE)
+devoutrgl::rgldev()
+route_plot
+invisible(grDevices::dev.off())
+if (!interactive()) rgl::rglwidget()
+```
+
+# Interactive plot
+
+Click and drag, zoom with scroll wheel.
+
+```{r}
+route_plot <-
+  ggplot2::ggplot() +
+  ggrgl::geom_path_3d(
+    ggplot2::aes(route$lon, route$lat, z = route$ele),
+    extrude = TRUE,
+    extrude_edge_colour = 'grey20',
+    extrude_face_fill = 'grey80',
+    extrude_edge_alpha = 0.2
+  ) + 
+  ggplot2::theme_void()
+
+devoutrgl::rgldev(fov = 30, view_angle = -30)
+route_plot
+invisible(grDevices::dev.off())
+if (!interactive()) rgl::rglwidget()
+```
+
+# 2D birdseye and profile
+
+```{r}
+par(mfrow = c(1, 2), mar = rep(0, 4))
+with(route, plot(lon, lat, type = "l", axes = FALSE))
+with(route, plot(time, ele, type = "l", axes = FALSE))
+```
