@@ -81,15 +81,16 @@ kstones <- route[k_indices, ]
 map_leaflet <- leaflet() |> 
   addProviderTiles("CartoDB.Voyager") |> 
   addPolylines(
-    route_min$lon,
-    route_min$lat,
-    color = col_red
+    route$lon,
+    route$lat,
+    color = col_red,
+    opacity = 0.8
   ) |> 
   addAwesomeMarkers(
     c(kstones[["lon"]], route[1, ][["lon"]]),
     c(kstones[["lat"]], route[1, ][["lat"]]),
     icon = awesomeIcons(
-      text = paste(0:21),
+      text = paste(c(1:21, 0)),
       fontFamily = "sans-serif",
       markerColor = col_red
     )
@@ -100,7 +101,7 @@ map_leaflet <- leaflet() |>
 #| name = "prep-plotly"
 
 prep_plotly_profile <- route |> 
-  ggplot(aes(distance_cum, ele)) +
+  ggplot(aes(round(distance_cum / 1000, 5), ele)) +
   geom_path(
     aes(
       group = as.Date(time),
@@ -110,11 +111,11 @@ prep_plotly_profile <- route |>
       )
     ),
     colour = col_red,
-    size = 2
+    size = 1
   ) +
   xlab("Distance (km)") +
   ylab("Elevation (m)") +
-  theme_void()
+  theme_minimal()
 
 map_plotly_profile <- ggplotly(tooltip = "text") |> 
   config(displayModeBar = FALSE)
@@ -129,7 +130,7 @@ map_plotly_3d <- plot_ly(
   z = ~route$ele,
   type = "scatter3d",
   mode = "lines",
-  line = list(color = col_red, width = 10, alpha = 1)
+  line = list(color = col_red, width = 10)
 ) |> 
   layout(
     scene = list(
@@ -144,7 +145,7 @@ map_plotly_3d <- plot_ly(
 Column {.tabset}
 -------------------------------------
 
-### `r emo::ji("bird")` Route
+### `r emo::ji("busstop")` Route
 
 ```{r}
 #| name = "output-leaflet"
