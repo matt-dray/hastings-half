@@ -184,32 +184,4 @@ I extracted the data from a GPX file provided from Apple Health using my [R pack
 
 I mapped the route with [the {leaflet} R package](https://rstudio.github.io/leaflet/), and added an elevation profile and 3D trace with [the {plotly} R package](https://plotly.com/r/).
 
-This page is built with [R Markdown](https://rmarkdown.rstudio.com/) and [the {flexdashabord} package](https://pkgs.rstudio.com/flexdashboard/). I used [{bslib}](https://rstudio.github.io/bslib/), [{thematic}](https://rstudio.github.io/thematic/), [{emo}](https://github.com/hadley/emo) and [Google Fonts](https://fonts.google.com/) for styles, theming and embellishment.
-
-<!-- ```{r} -->
-<!-- #| name = "prep-ggrgl" -->
-
-<!-- map_ggrgl <- route |>  -->
-<!--   ggplot() + -->
-<!--   geom_path_3d( -->
-<!--     aes(lon, lat, z = ele), -->
-<!--     extrude = TRUE, -->
-<!--     extrude_edge_colour = "#000000", -->
-<!--     extrude_face_fill = col_red, -->
-<!--     extrude_edge_alpha = 0.2 -->
-<!--   ) +  -->
-<!--   theme_void() -->
-<!-- ``` -->
-
-<!-- ### `r emo::ji("globe_with_meridians")` Route 3D -->
-
-<!-- ```{r} -->
-<!-- #| name = "output-ggrgl", -->
-<!-- #| fig.showtext = TRUE, -->
-<!-- #| error = FALSE -->
-
-<!-- rgldev(fov = 30, view_angle = -30) -->
-<!-- map_ggrgl -->
-<!-- invisible(dev.off()) -->
-<!-- if (!interactive()) rglwidget() -->
-<!-- ``` -->
+This page is built with [R Markdown](https://rmarkdown.rstudio.com/) and [the {flexdashboard} package](https://pkgs.rstudio.com/flexdashboard/). I used [{bslib}](https://rstudio.github.io/bslib/), [{thematic}](https://rstudio.github.io/thematic/), [{emo}](https://github.com/hadley/emo) and [Google Fonts](https://fonts.google.com/) for styles, theming and embellishment.
