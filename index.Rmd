@@ -1,5 +1,5 @@
 ---
-title: "`r emo::ji('runner')` Hastings Half-Marathon Maps"
+title: "`r emo::ji('runner')` Hastings Half-Marathon"
 output: 
   flexdashboard::flex_dashboard:
     navbar:
@@ -165,6 +165,26 @@ map_plotly_profile
 #| name = "plot-plotly-3d"
 map_plotly_3d
 ```
+
+### `r emo::ji("information")` About
+
+#### What is this?
+
+This page has interactive plots showing the path, elevation profile and 3D shape of the [Hastings Half Marathon](https://www.hastings-half.co.uk/) route.
+
+`r emo::ji("computer")` On desktop: click and drag to move the objects, use your scrollwheel to zoom.
+
+`r emo::ji("iphone")` On mobile: swipe to move, pinch to zoom.
+
+#### Development
+
+I captured with an Apple Watch my geolocation for the duration of the the 2022 Hastings Half Marathon.
+
+I extracted the data from a GPX file provided from Apple Health using my [R package {gpx3d}](https://www.rostrum.blog/2021/12/30/gpx3d/).
+
+I mapped the route with [the {leaflet} R package](https://rstudio.github.io/leaflet/), and added an elevation profile and 3D trace with [the {plotly} R package](https://plotly.com/r/).
+
+This page is built with [R Markdown](https://rmarkdown.rstudio.com/) and [the {flexdashabord} package](https://pkgs.rstudio.com/flexdashboard/). I used [{bslib}](https://rstudio.github.io/bslib/), [{thematic}](https://rstudio.github.io/thematic/), [{emo}](https://github.com/hadley/emo) and [Google Fonts](https://fonts.google.com/) for styles, theming and embellishment.
 
 <!-- ```{r} -->
 <!-- #| name = "prep-ggrgl" -->
